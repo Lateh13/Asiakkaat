@@ -33,8 +33,8 @@ tr:nth-child(even) {
 	<thead>
 		<tr>
 			<th id="th1" colspan="2">Hakusana:</th>
-			<th><input type="text" name="haku" size="20"></th>
-			<th><input type="submit" value="Hae"></th>
+			<th><input type="text" name="haku" id="haettava" size="20"></th>
+			<th><input type="submit" value="Hae" id="hakunappi"></th>
 		</tr>
   		<tr>
 	    	<th>Etunimi</th>
@@ -48,7 +48,22 @@ tr:nth-child(even) {
 </table>
 <script>
 $(document).ready(function() {
-	$.ajax({url:"asiakkaat", type:"GET", dataType:"json", success:function(result) {
+	haeAsiakkaat();
+	
+	$("#hakunappi").click(function() {
+		haeAsiakkaat();
+		
+	});
+	$(document.body).on("keydown", function(event) {
+		if(event.which == 13) {
+			haeAsiakkaat();
+		}
+	});
+});
+	
+function haeAsiakkaat() {
+	$("#listaus tbody").empty();
+	$.ajax({url:"asiakkaat/"+$("#haettava").val(), type:"GET", dataType:"json", success:function(result) {
 		$.each(result.asiakkaat, function(i, field) {
 			var htmlStr;
 			htmlStr+="<tr>";
@@ -60,7 +75,7 @@ $(document).ready(function() {
 			$("#listaus tbody").append(htmlStr);
 		});
 	}});
-});
+};
 
 </script>
 </body>

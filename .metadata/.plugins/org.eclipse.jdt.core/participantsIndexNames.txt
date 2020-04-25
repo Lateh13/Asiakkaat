@@ -3,3 +3,5 @@ C:\Users\lateh\eclipse-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jsp
 \Etatehtava3\src
 C:\Users\lateh\eclipse-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2993656568.index
 \Asiakkaat\src
+C:\Users\lateh\eclipse-workspace\Asiakkaat\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2993656568.index
+\Asiakkaat\src
