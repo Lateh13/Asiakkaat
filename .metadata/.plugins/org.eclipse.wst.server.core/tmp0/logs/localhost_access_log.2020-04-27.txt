@@ -1,0 +1,15 @@
+127.0.0.1 - - [27/Apr/2020:21:08:14 +0300] "GET / HTTP/1.1" 404 709
+0:0:0:0:0:0:0:1 - - [27/Apr/2020:21:08:15 +0300] "GET /Asiakkaat/lisaaasiakas.jsp HTTP/1.1" 200 2583
+0:0:0:0:0:0:0:1 - - [27/Apr/2020:21:08:15 +0300] "GET /Asiakkaat/css/main.css HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [27/Apr/2020:21:08:15 +0300] "GET /Asiakkaat/scripts/main.js HTTP/1.1" 200 568
+0:0:0:0:0:0:0:1 - - [27/Apr/2020:21:08:15 +0300] "GET /favicon.ico HTTP/1.1" 404 720
+127.0.0.1 - - [27/Apr/2020:21:08:35 +0300] "GET / HTTP/1.1" 404 709
+0:0:0:0:0:0:0:1 - - [27/Apr/2020:21:08:44 +0300] "GET /Asiakkaat/listaaasiakkaat.jsp HTTP/1.1" 200 1842
+0:0:0:0:0:0:0:1 - - [27/Apr/2020:21:08:45 +0300] "GET /Asiakkaat/asiakkaat/ HTTP/1.1" 200 310
+0:0:0:0:0:0:0:1 - - [27/Apr/2020:21:08:47 +0300] "GET /Asiakkaat/lisaaasiakas.jsp HTTP/1.1" 200 2583
+0:0:0:0:0:0:0:1 - - [27/Apr/2020:21:08:47 +0300] "GET /Asiakkaat/scripts/main.js HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [27/Apr/2020:21:09:08 +0300] "GET /Asiakkaat/lisaaasiakas.jsp HTTP/1.1" 200 2583
+0:0:0:0:0:0:0:1 - - [27/Apr/2020:21:09:08 +0300] "GET /Asiakkaat/scripts/main.js HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [27/Apr/2020:21:09:26 +0300] "GET /Asiakkaat/lisaaasiakas.jsp?etunimi=Heini&sukunimi=Hakulinen&puhelin=0405512719&sposti=heiniesk%40gmail.com&tallenna=L%E4het%E4 HTTP/1.1" 200 2583
+0:0:0:0:0:0:0:1 - - [27/Apr/2020:21:09:26 +0300] "GET /Asiakkaat/scripts/main.js HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [27/Apr/2020:21:09:37 +0300] "GET /Asiakkaat/asiakkaat/ HTTP/1.1" 200 310

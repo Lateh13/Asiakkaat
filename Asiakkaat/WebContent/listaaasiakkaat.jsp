@@ -3,44 +3,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style type="text/css">
-th#th1 {
-	text-align: right;
-	padding: 6px;
-	background-color: #24a850;
-}
-
-th {
-	text-align: left;
-	padding: 6px;
-	background-color: #24a850;
-}
-
-td {
-	text-align: left;
-	padding: 6px;
-}
-
-tr:nth-child(even) {
-  background-color: #d9d9d9;
-</style>
 <meta charset="ISO-8859-1">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/main.css">
 <title>Asiakkaat</title>
 </head>
 <body>
 <table id="listaus">
 	<thead>
 		<tr>
-			<th id="th1" colspan="2">Hakusana:</th>
-			<th><input type="text" name="haku" id="haettava" size="20"></th>
+			<th colspan="4" class="oikealle"><span id="uusiAsiakas">Lisää uusi asiakas</span></th>
+		</tr>
+		<tr>
+			<th class="oikealle">Hakusana:</th>
+			<th colspan="2"><input type="text" name="haku" id="haettava" size="20"></th>
 			<th><input type="submit" value="Hae" id="hakunappi"></th>
 		</tr>
   		<tr>
 	    	<th>Etunimi</th>
 	    	<th>Sukunimi</th>
 	    	<th>Puhelin</th>
-	   		<th>Sposti</th>
+	   		<th>S-posti</th>
 	   	</tr>
 	</thead>
 	<tbody>
@@ -49,6 +32,10 @@ tr:nth-child(even) {
 <script>
 $(document).ready(function() {
 	haeAsiakkaat();
+	
+	$("#uusiAsiakas").click(function() {
+		document.location="lisaaasiakas.jsp";
+	});
 	
 	$("#hakunappi").click(function() {
 		haeAsiakkaat();

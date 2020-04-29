@@ -19,3 +19,11 @@
 0:0:0:0:0:0:0:1 - - [25/Apr/2020:22:29:04 +0300] "GET /Asiakkaat/listaaasiakkaat.jsp HTTP/1.1" 200 1649
 0:0:0:0:0:0:0:1 - - [25/Apr/2020:22:29:04 +0300] "GET /Asiakkaat/asiakkaat/ HTTP/1.1" 200 310
 0:0:0:0:0:0:0:1 - - [25/Apr/2020:22:29:08 +0300] "GET /Asiakkaat/asiakkaat/masa HTTP/1.1" 200 117
+127.0.0.1 - - [25/Apr/2020:22:29:30 +0300] "GET / HTTP/1.1" 404 709
+0:0:0:0:0:0:0:1 - - [25/Apr/2020:22:29:32 +0300] "GET /Asiakkaat/listaaasiakkaat.jsp HTTP/1.1" 200 1650
+0:0:0:0:0:0:0:1 - - [25/Apr/2020:22:29:32 +0300] "GET /Asiakkaat/asiakkaat/ HTTP/1.1" 200 310
+0:0:0:0:0:0:0:1 - - [25/Apr/2020:22:29:34 +0300] "GET /Asiakkaat/asiakkaat/masa HTTP/1.1" 200 117
+0:0:0:0:0:0:0:1 - - [25/Apr/2020:22:29:37 +0300] "GET /Asiakkaat/asiakkaat/ HTTP/1.1" 200 310
+0:0:0:0:0:0:0:1 - - [25/Apr/2020:22:29:41 +0300] "GET /Asiakkaat/asiakkaat/jaana HTTP/1.1" 200 114
+0:0:0:0:0:0:0:1 - - [25/Apr/2020:22:29:54 +0300] "GET /Asiakkaat/asiakkaat/ HTTP/1.1" 200 310
+0:0:0:0:0:0:0:1 - - [25/Apr/2020:22:30:03 +0300] "GET /Asiakkaat/asiakkaat/koivu HTTP/1.1" 200 113

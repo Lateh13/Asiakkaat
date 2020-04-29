@@ -1,0 +1,26 @@
+@charset "ISO-8859-1";
+th#th1 {
+	text-align: right;
+	padding: 6px;
+	background-color: #24a850;
+}
+
+table th {
+	text-align: left;
+	padding: 6px;
+	background-color: #24a850;
+}
+
+table td {
+	text-align: left;
+	padding: 6px;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #d9d9d9;
+}
+
+.oikealle{
+	text-align: right;	
+	
+}
