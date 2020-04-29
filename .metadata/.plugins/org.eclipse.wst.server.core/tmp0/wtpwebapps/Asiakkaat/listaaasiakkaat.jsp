@@ -12,23 +12,27 @@
 <table id="listaus">
 	<thead>
 		<tr>
-			<th colspan="4" class="oikealle"><span id="uusiAsiakas">Lis‰‰ uusi asiakas</span></th>
+			<th colspan="6" class="oikealle"><span id="uusiAsiakas">Lis‰‰ uusi asiakas</span></th>
 		</tr>
 		<tr>
-			<th class="oikealle">Hakusana:</th>
-			<th colspan="2"><input type="text" name="haku" id="haettava" size="20"></th>
-			<th><input type="submit" value="Hae" id="hakunappi"></th>
+			<th class="oikealle" colspan="2">Hakusana:</th>
+			<th colspan="3"><input type="text" name="haku" id="haettava" size="20"></th>
+			<th ><input type="submit" value="Hae" id="hakunappi"></th>
 		</tr>
   		<tr>
+  			<th>ID</th>
 	    	<th>Etunimi</th>
 	    	<th>Sukunimi</th>
 	    	<th>Puhelin</th>
 	   		<th>S-posti</th>
+	   		<th></th>
 	   	</tr>
 	</thead>
 	<tbody>
+	<span id="ilmoitus"></span>
 	</tbody>
 </table>
+<span id="ilmoitus"></span>
 <script>
 $(document).ready(function() {
 	haeAsiakkaat();
@@ -53,17 +57,31 @@ function haeAsiakkaat() {
 	$.ajax({url:"asiakkaat/"+$("#haettava").val(), type:"GET", dataType:"json", success:function(result) {
 		$.each(result.asiakkaat, function(i, field) {
 			var htmlStr;
-			htmlStr+="<tr>";
+			htmlStr+="<tr id='rivi_"+field.id+"'>";
+			htmlStr+="<td>"+field.id+"</td>";
 			htmlStr+="<td>"+field.etunimi+"</td>";
 			htmlStr+="<td>"+field.sukunimi+"</td>";
 			htmlStr+="<td>"+field.puhelin+"</td>";
 			htmlStr+="<td>"+field.sposti+"</td>";
+			htmlStr+="<td><span class='poista' onclick=poista('"+field.id+"')>Poista</span></td>";
 			htmlStr+="</tr>";
 			$("#listaus tbody").append(htmlStr);
 		});
 	}});
-};
+}
 
+function poista(id) {
+	if (confirm("Poista asiakas, jonka id on " + id +"?")) {
+		$.ajax({url:"asiakkaat/"+id, type:"DELETE", dataType:"json", success:function(result) {
+			if (result.response == 0) {
+				$("#ilmoitus").html("Asiakkaan poisto ep‰onnistui.");
+			} else if (result.response == 1) {
+	        	alert("Asiakas " + id +" poisto onnistui.");
+				haeAsiakkaat();
+			}
+		}});
+	}
+}
 </script>
 </body>
 </html>

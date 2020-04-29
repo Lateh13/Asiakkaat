@@ -6,4 +6,3 @@ INDEX VERSION 1.4+C:\Users\lateh\eclipse-workspace\Asiakkaat\.metadata\.plugins\
 3042236339.index
 2345576146.index
 2993656568.index
-2993656568.index

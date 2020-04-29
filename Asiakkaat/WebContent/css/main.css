@@ -34,3 +34,9 @@ table th {
 	color: white;	
 	cursor: pointer;	
 }
+
+.poista{
+	color: red;
+	text-decoration: underline;
+	cursor: pointer;	
+}
