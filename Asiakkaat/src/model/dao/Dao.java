@@ -122,5 +122,50 @@ public class Dao {
 		}
 		return paluuArvo;
 	}
+	
+	public Asiakas etsiAsiakas(int id) {
+		Asiakas asiakas = null;
+		sql = "SELECT * FROM asiakkaat WHERE asiakas_id=?";
+		try {
+			connection = yhdista();
+			if (connection != null) {
+				stmtPrep = connection.prepareStatement(sql);
+				stmtPrep.setInt(1, id);
+				rs = stmtPrep.executeQuery();
+				if (rs.isBeforeFirst()) {
+					rs.next();
+					asiakas = new Asiakas();
+					asiakas.setEtunimi(rs.getString(1));
+					asiakas.setSukunimi(rs.getString(2));
+					asiakas.setPuhelin(rs.getString(3));
+					asiakas.setSposti(rs.getString(4));
+				}
+			}
+			connection.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return asiakas;
+	}
+	
+	public boolean muutaAsiakas(Asiakas asiakas, int id) {
+		boolean paluuArvo = true;
+		sql = "UPDATE asiakkaat SET etunimi=?, sukunimi=?, puhelin=?, sposti=? WHERE asiakas_id=?";
+		try {
+			connection = yhdista();
+			stmtPrep = connection.prepareStatement(sql);
+			stmtPrep.setString(1, asiakas.getEtunimi());
+			stmtPrep.setString(2, asiakas.getSukunimi());
+			stmtPrep.setString(3, asiakas.getPuhelin());
+			stmtPrep.setString(4, asiakas.getSposti());
+			stmtPrep.setInt(5, id);
+			stmtPrep.executeUpdate();
+			connection.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			paluuArvo = false;
+		}
+		return paluuArvo;
+	}	
 }
 

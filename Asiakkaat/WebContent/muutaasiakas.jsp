@@ -8,7 +8,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/main.css">
-<title>Lis‰ys</title>
+<title>Muutos</title>
 </head>
 <body>
 <form id="tiedot">
@@ -31,18 +31,27 @@
 				<td><input type="text" name="sukunimi" id="sukunimi"></td>
 				<td><input type="text" name="puhelin" id="puhelin"></td>
 				<td><input type="text" name="sposti" id="sposti"></td>
-				<td><input type="submit" name="tallenna" id="Lis‰‰"></td>
+				<td><input type="submit" name="tallenna" id="Hyv‰ksy"></td>
 			</tr>
 		</tbody>
 	</table>
+	<input type="hidden" name="id" id="id">
 </form>
 <span id="ilmoitus"></span>
 </body>
-<script type="text/javascript">
+<script>
 $(document).ready(function() {
 	$("#takaisin").click(function() {
 		document.location="listaaasiakkaat.jsp";
 	});
+	var id = requestURLParam("asiakasid");
+	$.ajax(url:"asiakkaat/haeyksi/"+id, type:"GET", dataType:"json", success:function(result) {
+		$("id").val(result.id);
+		$("etunimi").val(result.etunimi);
+		$("sukunimi").val(result.sukunimi);
+		$("puhelin").val(result.puhelin);
+		$("sposti").val(result.sposti);
+	})
 	$("#tiedot").validate( {
 		rules: {
 			etunimi:	{
@@ -96,13 +105,13 @@ $(document).ready(function() {
 	});
 });
 
-function lisaaTiedot() {
+function paivitaTiedot() {
 	var formJsonStr = formDataJsonStr($("#tiedot").serializeArray());
-	$.ajax({url:"asiakkaat", data:formJsonStr, type:"POST", dataType:"json", success:function(result) {
-		if (result.response == 0) {
-			$("#ilmoitus").html("Asiakkaan lis‰‰minen ep‰onnistui");
+	$.ajax({url:"asiakkaat", data:fromJsonStr, type:"PUT", dataType:"json", success:function(result) {
+		if(result.response == 0) {
+			$("#ilmoitus").html("Asiakkaan p‰ivitt‰minen ep‰onnistui");
 		} else if (result.response == 1) {
-			$("#ilmoitus").html("Asiakkaan lis‰‰minen onnistui");
+			$("#ilmoitus").html("Asiakkaan p‰ivitt‰minen onnistui");
 			$("#etunimi", "#sukunimi", "#puhelin", "#sposti").val("");
 		}
 	}});

@@ -28,9 +28,6 @@
 	   		<th></th>
 	   	</tr>
 	</thead>
-	<tbody>
-	<span id="ilmoitus"></span>
-	</tbody>
 </table>
 <span id="ilmoitus"></span>
 <script>
@@ -63,6 +60,7 @@ function haeAsiakkaat() {
 			htmlStr+="<td>"+field.sukunimi+"</td>";
 			htmlStr+="<td>"+field.puhelin+"</td>";
 			htmlStr+="<td>"+field.sposti+"</td>";
+			htmlStr+="<td><a href='muutaasiakas?id="+field.id+"'>Muuta</a>&nbsp;"; 
 			htmlStr+="<td><span class='poista' onclick=poista('"+field.id+"')>Poista</span></td>";
 			htmlStr+="</tr>";
 			$("#listaus tbody").append(htmlStr);
