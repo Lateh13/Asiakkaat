@@ -44,14 +44,14 @@ $(document).ready(function() {
 	$("#takaisin").click(function() {
 		document.location="listaaasiakkaat.jsp";
 	});
-	var id = requestURLParam("asiakasid");
-	$.ajax(url:"asiakkaat/haeyksi/"+id, type:"GET", dataType:"json", success:function(result) {
-		$("id").val(result.id);
-		$("etunimi").val(result.etunimi);
-		$("sukunimi").val(result.sukunimi);
-		$("puhelin").val(result.puhelin);
-		$("sposti").val(result.sposti);
-	})
+	var id = requestURLParam("id");
+	$.ajax({url:"asiakkaat/haeyksi/"+id, type:"GET", dataType:"json", success:function(result) {
+		$("#id").val(result.id);
+		$("#etunimi").val(result.etunimi);
+		$("#sukunimi").val(result.sukunimi);
+		$("#puhelin").val(result.puhelin);
+		$("#sposti").val(result.sposti);
+	}});
 	$("#tiedot").validate( {
 		rules: {
 			etunimi:	{
@@ -100,7 +100,7 @@ $(document).ready(function() {
 			}
 		},
 		submitHandler: function(form) {
-			lisaaTiedot();
+			paivitaTiedot();
 		}
 	});
 });

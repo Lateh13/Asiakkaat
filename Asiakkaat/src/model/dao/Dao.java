@@ -57,17 +57,17 @@ public class Dao {
 		return asiakkaat;
 	}
 	
-	public ArrayList<Asiakas> listaaKaikki(String haku) {
+	public ArrayList<Asiakas> listaaKaikki(String hakusana) {
 		ArrayList<Asiakas> asiakkaat = new ArrayList<Asiakas>();
 		sql = "SELECT * FROM asiakkaat WHERE etunimi LIKE ? OR sukunimi LIKE ? OR puhelin LIKE ? or sposti LIKE ?";
 		try {
 			connection = yhdista();
 			if (connection != null) {
 				stmtPrep = connection.prepareStatement(sql);
-				stmtPrep.setString(1, "%" + haku +"%");
-				stmtPrep.setString(2, "%" + haku +"%");
-				stmtPrep.setString(3, "%" + haku +"%");
-				stmtPrep.setString(4, "%" + haku +"%");
+				stmtPrep.setString(1, "%" + hakusana +"%");
+				stmtPrep.setString(2, "%" + hakusana +"%");
+				stmtPrep.setString(3, "%" + hakusana +"%");
+				stmtPrep.setString(4, "%" + hakusana +"%");
 				rs = stmtPrep.executeQuery();
 				if (rs != null) {
 					while(rs.next()) {
