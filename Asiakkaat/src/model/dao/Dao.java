@@ -41,7 +41,7 @@ public class Dao {
 				if (rs != null) {
 					while(rs.next()) {
 						Asiakas asiakas = new Asiakas();
-						asiakas.setId(rs.getInt(1));
+						asiakas.setAsiakas_id(rs.getInt(1));
 						asiakas.setEtunimi(rs.getString(2));
 						asiakas.setSukunimi(rs.getString(3));
 						asiakas.setPuhelin(rs.getString(4));
@@ -72,7 +72,7 @@ public class Dao {
 				if (rs != null) {
 					while(rs.next()) {
 						Asiakas asiakas = new Asiakas();
-						asiakas.setId(rs.getInt(1));
+						asiakas.setAsiakas_id(rs.getInt(1));
 						asiakas.setEtunimi(rs.getString(2));
 						asiakas.setSukunimi(rs.getString(3));
 						asiakas.setPuhelin(rs.getString(4));
@@ -107,13 +107,13 @@ public class Dao {
 		return paluuArvo;
 	}
 	
-	public boolean poistaAsiakas(int id) {
+	public boolean poistaAsiakas(int asiakas_id) {
 		boolean paluuArvo = true;
 		sql = "DELETE FROM asiakkaat WHERE asiakas_id=?";
 		try {
 			connection = yhdista();
 			stmtPrep = connection.prepareStatement(sql);
-			stmtPrep.setInt(1, id);
+			stmtPrep.setInt(1, asiakas_id);
 			stmtPrep.executeUpdate();
 			connection.close();
 		} catch (Exception e) {
@@ -123,22 +123,23 @@ public class Dao {
 		return paluuArvo;
 	}
 	
-	public Asiakas etsiAsiakas(int id) {
+	public Asiakas etsiAsiakas(int asiakas_id) {
 		Asiakas asiakas = null;
 		sql = "SELECT * FROM asiakkaat WHERE asiakas_id=?";
 		try {
 			connection = yhdista();
 			if (connection != null) {
 				stmtPrep = connection.prepareStatement(sql);
-				stmtPrep.setInt(1, id);
+				stmtPrep.setInt(1, asiakas_id);
 				rs = stmtPrep.executeQuery();
 				if (rs.isBeforeFirst()) {
 					rs.next();
 					asiakas = new Asiakas();
-					asiakas.setEtunimi(rs.getString(1));
-					asiakas.setSukunimi(rs.getString(2));
-					asiakas.setPuhelin(rs.getString(3));
-					asiakas.setSposti(rs.getString(4));
+					asiakas.setAsiakas_id(rs.getInt("asiakas_id"));
+					asiakas.setEtunimi(rs.getString("etunimi"));
+					asiakas.setSukunimi(rs.getString("sukunimi"));
+					asiakas.setPuhelin(rs.getString("puhelin"));
+					asiakas.setSposti(rs.getString("sposti"));
 				}
 			}
 			connection.close();
@@ -148,7 +149,7 @@ public class Dao {
 		return asiakas;
 	}
 	
-	public boolean muutaAsiakas(Asiakas asiakas, int id) {
+	public boolean muutaAsiakas(Asiakas asiakas) {
 		boolean paluuArvo = true;
 		sql = "UPDATE asiakkaat SET etunimi=?, sukunimi=?, puhelin=?, sposti=? WHERE asiakas_id=?";
 		try {
@@ -158,7 +159,7 @@ public class Dao {
 			stmtPrep.setString(2, asiakas.getSukunimi());
 			stmtPrep.setString(3, asiakas.getPuhelin());
 			stmtPrep.setString(4, asiakas.getSposti());
-			stmtPrep.setInt(5, id);
+			stmtPrep.setInt(5, asiakas.getAsiakas_id());
 			stmtPrep.executeUpdate();
 			connection.close();
 		} catch (Exception e) {

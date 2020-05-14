@@ -16,11 +16,11 @@ public class Asiakas {
 		this.sposti = sposti;
 	}
 
-	public int getId() {
+	public int getAsiakas_id() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setAsiakas_id(int id) {
 		this.id = id;
 	}
 

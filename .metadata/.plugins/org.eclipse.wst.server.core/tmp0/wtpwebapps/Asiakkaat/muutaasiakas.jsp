@@ -22,7 +22,7 @@
 				<th>Sukunimi</th>
 				<th>Puhelin</th>
 				<th>S-posti</th>
-				<th></th>
+				<th>Hallinta</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -31,11 +31,11 @@
 				<td><input type="text" name="sukunimi" id="sukunimi"></td>
 				<td><input type="text" name="puhelin" id="puhelin"></td>
 				<td><input type="text" name="sposti" id="sposti"></td>
-				<td><input type="submit" name="tallenna" id="Hyväksy"></td>
+				<td><input type="submit" name="Tallenna" id="Tallenna"></td>
 			</tr>
 		</tbody>
 	</table>
-	<input type="hidden" name="id" id="id">
+	<input type="hidden" name="asiakas_id" id="asiakas_id">
 </form>
 <span id="ilmoitus"></span>
 </body>
@@ -44,14 +44,14 @@ $(document).ready(function() {
 	$("#takaisin").click(function() {
 		document.location="listaaasiakkaat.jsp";
 	});
-	var id = requestURLParam("id");
-	$.ajax({url:"asiakkaat/haeyksi/"+id, type:"GET", dataType:"json", success:function(result) {
-		$("#id").val(result.id);
-		$("#etunimi").val(result.etunimi);
+	var asiakas_id = requestURLParam("asiakas_id");
+	$.ajax({url:"asiakkaat/haeyksi/"+asiakas_id, type:"GET", dataType:"json", success:function(result){	
+		$("#etunimi").val(result.etunimi);	
 		$("#sukunimi").val(result.sukunimi);
 		$("#puhelin").val(result.puhelin);
-		$("#sposti").val(result.sposti);
-	}});
+		$("#sposti").val(result.sposti);		
+		$("#asiakas_id").val(result.asiakas_id);		
+    }});
 	$("#tiedot").validate( {
 		rules: {
 			etunimi:	{
@@ -112,7 +112,7 @@ function paivitaTiedot() {
 			$("#ilmoitus").html("Asiakkaan päivittäminen epäonnistui");
 		} else if (result.response == 1) {
 			$("#ilmoitus").html("Asiakkaan päivittäminen onnistui");
-			$("#etunimi", "#sukunimi", "#puhelin", "#sposti").val("");
+		
 		}
 	}});
 }
