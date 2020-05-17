@@ -1,0 +1,8 @@
+INDEX VERSION 1.4+C:\NativeAsiakkaat\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+2993656568.index
+2823662592.index
+1946601814.index
+2848612781.index
+1641762488.index
+1474738640.index
+374088388.index

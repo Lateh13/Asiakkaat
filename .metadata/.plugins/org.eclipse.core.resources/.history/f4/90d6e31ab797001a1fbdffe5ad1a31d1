@@ -1,0 +1,99 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<script src="scripts/main.js"></script>
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<title>Asiakkaan lisäys</title>
+</head>
+<body onkeydown = "etsi(event)">
+<form id="tiedot">
+	<table>
+		<thead>
+			<tr>
+				<th colspan="3" id="ilmoitus"> 
+				<th colspan="2" class="oikealle"><a href="listaaasiakkaat.jsp">Takaisin listaukseen</a></th>
+			</tr>
+			<tr>
+				<th>Etunimi</th>
+				<th>Sukunimi</th>
+				<th>Puhelin</th>
+				<th>S-posti</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><input type="text" name="etunimi" id="etunimi"></td>
+				<td><input type="text" name="sukunimi" id="sukunimi"></td>
+				<td><input type="text" name="puhelin" id="puhelin"></td>
+				<td><input type="text" name="sposti" id="sposti"></td>
+				<td><input type="button" name="tallenna" id="tallenna" value="Lisää" onclick="lisaaAsiakas()"></td>
+			</tr>
+		</tbody>
+	</table>
+</form>
+</body>
+<script>
+function etsi(event) {
+	if(event.keyCode == 13) {
+		lisaaAsiakas();
+	}
+}
+
+function lisaaAsiakas() {
+	validate();
+}
+
+function validate() {
+	var ilmoitus = "";
+	var etunimi = document.getElementById("etunimi").value;
+	var sukunimi = document.getElementById("sukunimi").value;
+	var puhelin = document.getElementById("puhelin").value;
+	var sposti = document.getElementById("sposti").value;
+	
+	var etunimiREGX = /^[A-Z]{1}[a-z]{2,40}$/;
+	var sukunimiREGX = /^[A-Z]{1}[a-z]{2,40}$/;
+	var puhelinREGX = /^[0-9]{8,20}$/;
+	var spostiREGX = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+	
+	var etunimiTulos = etunimiREGX.test(etunimi);
+	var sukunimiTulos = sukunimiREGX.test(sukunimi);
+	var puhelinTulos = puhelinREGX.test(puhelin);
+	var spostiTulos = spostiREGX.test(sposti);
+	
+	if (etunimiTulos == false) {
+		ilmoitus = "Etunimi ei kelpaa!";
+	}
+	if (sukunimiTulos == false) {
+		ilmoitus = "Sukunimi ei kelpaa!";
+	}
+	if (puhelinTulos == false ) {
+		ilmoitus = "Puhelinnumero ei kelpaa!";
+	}
+	if (spostiTulos == false) {
+		ilmoitus = "Sähköpostiosoite ei kelpaa!";
+		document.getElementById("sposti").style.borderBottomColor = "red";
+	}
+	if (ilmoitus != "") {
+		document.getElementById("ilmoitus").innerHTML = ilmoitus;
+		return;
+	}
+	return true;
+}
+
+function lisaaTiedot() {
+	var formJsonStr = formDataJsonStr($("#tiedot").serializeArray());
+	$.ajax({url:"asiakkaat", data:formJsonStr, type:"POST", dataType:"json", success:function(result) {
+		if (result.response == 0) {
+			$("#ilmoitus").html("Asiakkaan lisääminen epäonnistui");
+		} else if (result.response == 1) {
+			$("#ilmoitus").html("Asiakkaan lisääminen onnistui");
+			$("#etunimi", "#sukunimi", "#puhelin", "#sposti").val("");
+		}
+	}});
+}
+</script>
+</html>
